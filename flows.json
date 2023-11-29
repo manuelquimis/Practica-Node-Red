@@ -1,0 +1,181 @@
+[
+    {
+        "id": "c5b1ae7b28aa94e8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "693896eb12ee74af",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3aff10784a118f8c",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "mqtt18",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "ebeb597b2656bdcf",
+        "type": "mqtt-broker",
+        "name": "broker",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "be0291e972eac191",
+        "type": "mqtt in",
+        "z": "c5b1ae7b28aa94e8",
+        "name": "suscriptor",
+        "topic": "topico/mooc_IoT",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3aff10784a118f8c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 220,
+        "y": 260,
+        "wires": [
+            [
+                "953e79508c0443ef"
+            ]
+        ]
+    },
+    {
+        "id": "953e79508c0443ef",
+        "type": "json",
+        "z": "c5b1ae7b28aa94e8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 370,
+        "y": 340,
+        "wires": [
+            [
+                "3f98597ff5dd70a9"
+            ]
+        ]
+    },
+    {
+        "id": "3f98597ff5dd70a9",
+        "type": "debug",
+        "z": "c5b1ae7b28aa94e8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "7f91a6e1548c9df1",
+        "type": "inject",
+        "z": "c5b1ae7b28aa94e8",
+        "name": "Envio de datos",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{“Temperatura”: 24,”Humedad”: 90}",
+        "payloadType": "jsonata",
+        "x": 740,
+        "y": 260,
+        "wires": [
+            [
+                "8c53aa0c979b7c43"
+            ]
+        ]
+    },
+    {
+        "id": "8c53aa0c979b7c43",
+        "type": "mqtt out",
+        "z": "c5b1ae7b28aa94e8",
+        "name": "publicador",
+        "topic": "topico/mooc_IoT",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ebeb597b2656bdcf",
+        "x": 930,
+        "y": 360,
+        "wires": []
+    }
+]
